@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="vertical-center" *ngIf="!addUser">
+  <ion-label text-center color="primary">Log In</ion-label> <br>
+  <ion-item>
+    <ion-label position="floating" >Username</ion-label>
+    <ion-input [(ngModel)]="user.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+  </ion-item>
+  <br>
+  <ion-button expand="block" (click)="login()">Ingresar</ion-button>
+  <br>
+  <br>
+  <ion-item>
+    <ion-label text-center><a (click)="saveUser()">New ? Register here</a></ion-label>
+  </ion-item>
+
+</ion-content>
+
+<ion-content padding class="vertical-center" *ngIf="addUser">
+  <ion-label text-center color="primary">Create Account</ion-label> <br>
+  <ion-item>
+    <ion-input placeholder="New Username" [(ngModel)]="user.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input placeholder="New Password" [(ngModel)]="user.password"></ion-input>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+  <br>
+  <ion-button expand="block" (click)="saveUser()">CREATE ACCOUNT</ion-button>
+  <br><br>
+  <ion-item>
+    <ion-label text-center><a (click)="changeVisibility()">Already Registered ? Log In here</a></ion-label>
+  </ion-item>
+</ion-content>
+
+
+
+
+
+
+<!-- <ion-label floating>Nombre de usuario</ion-label>
+    <ion-input [(ngModel)]="user.password" type="text"></ion-input>
+    <ion-list>
+        <ion-item no-padding>
+            
+        </ion-item>
+        <ion-item no-padding>
+            <ion-label floating>Password</ion-label>
+            <ion-input [(ngModel)]="user.password" type="password"></ion-input>
+        </ion-item>
+
+        <button padding (click)="homePage()" color=secondary ion-button full round>Login</button>
+
+        <a (click)="registerPage()">New ? Register here</a>
+    </ion-list> -->
