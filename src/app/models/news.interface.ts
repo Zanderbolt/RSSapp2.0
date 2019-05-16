@@ -1,6 +1,9 @@
-export interface newsI {
-    title: string;
-    description: string;
-    imageURL: string;
+export class newsI {
+    constructor(
+        title: string,
+        description: string,
+        imageURL: string,
+        ) {}
+
 }
 

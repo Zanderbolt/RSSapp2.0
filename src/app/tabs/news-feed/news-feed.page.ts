@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { newsI } from '../../models/news.interface'
+import { newsI } from '../../models/news.interface';
+import { networkInterfaces } from 'os';
 
 @Component({
   selector: 'app-news-feed',
@@ -7,12 +8,12 @@ import { newsI } from '../../models/news.interface'
   styleUrls: ['./news-feed.page.scss'],
 })
 export class NewsFeedPage implements OnInit {
-
+  public noticias: newsI;
 
   constructor() { 
   //  this.news02 = new newsI[]
+    this.noticias = new newsI('hola', 'perro', 'dasd');
   }
-  
 
 
   newsApi : any;
@@ -42,23 +43,26 @@ export class NewsFeedPage implements OnInit {
 
   ngOnInit() {
     this.prueba()
-
+    // this.noticias[0] = {
+    //   title: "Titulo",
+    //   description: "Description",
+    //   imageURL: "imageURL"
+    // };
 
   }
 
   prueba() {
-    const url = 'https://www.reforma.com/rss/portada.xml'
-    const textarea = document.getElementById('rickys-blog-textarea')
+    const url = 'https://www.reforma.com/rss/portada.xml';
+    const textarea = document.getElementById('rickys-blog-textarea');
     feednami.load(url)
-      .then(feed => { 
-        this.newsApi = feed; 
-        // console.log(this.news.entries[1]); 
+      .then(feed => {
+        this.newsApi = feed;
+        // console.log(this.news.entries[1]);
         // this.imageUrl = this.news.entries[1]['rss:enclosure']['#'];
         // this.title = this.news.entries[1].title;
         // this.description = this.news.entries[1].description;
         // console.log(this.news)
-      })  
-        
+      });
   }
 
   ciclo() {
@@ -71,10 +75,17 @@ export class NewsFeedPage implements OnInit {
       let titulo = this.newsApi.entries[i].title;
       let description = (this.newsApi.entries[i].description);
       let imageURL = (this.newsApi.entries[i]['rss:enclosure']['#'])
-      this.newsTitle.push(titulo)
-      this.newsDescription.push(description)
-      this.newsimageURL.push(imageURL)
-
+      // this.newsTitle.push(titulo)
+      // this.newsDescription.push(description)
+      // this.newsimageURL.push(imageURL)
+      this.noticias[i] = {
+        title: titulo,
+        description: description,
+        imageURL: imageURL
+      };
+      console.log(this.noticias[9]);
+      // this.newsDescription.push(description)
+      // this.newsimageURL.push(imageURL)
       
   
 

@@ -15,12 +15,12 @@
     <ion-item>
         <ion-card> {{new.description}} </ion-card>
     </ion-item> -->
-
-    <ion-card *ngFor = "let new of newsTitle"> 
+    {{noticias[0].title}}
+    <ion-card > 
         <!-- <ion-img src={{new.imageUrl}}></ion-img>  -->
         <ion-card-header>
           
-          <ion-card-title> {{new}} </ion-card-title>
+          <ion-card-title> {{noticia}} </ion-card-title>
         </ion-card-header>
       
         <!-- <ion-card-content>
