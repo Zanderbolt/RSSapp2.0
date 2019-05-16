@@ -64,7 +64,7 @@ export class NewsFeedPage implements OnInit {
     // };
     setTimeout(() => {
       this.ciclo();
-    }, 750);
+    }, 1050);
   }
 
   prueba() {

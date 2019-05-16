@@ -17,10 +17,10 @@ export class UsersService {
   public loggedIn : boolean = false;
 
   
-  mostrarCiencia: boolean = false;
-  mostrarCultura: boolean = false;
-  mostrarModa: boolean = false;
-  mostrarNegocios: boolean = false;
+  mostrarCiencia: boolean = true;
+  mostrarCultura: boolean = true;
+  mostrarModa: boolean = true;
+  mostrarNegocios: boolean = true;
 
   constructor(db: AngularFirestore) { 
     this.usersCollection = db.collection<userI>('users') //Collección o tabla
