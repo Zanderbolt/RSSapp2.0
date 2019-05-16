@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { newsI } from '../../models/news.interface';
-import { networkInterfaces } from 'os';
+
 
 @Component({
   selector: 'app-news-feed',
@@ -8,11 +8,11 @@ import { networkInterfaces } from 'os';
   styleUrls: ['./news-feed.page.scss'],
 })
 export class NewsFeedPage implements OnInit {
-  public noticias: newsI;
+  
 
   constructor() { 
   //  this.news02 = new newsI[]
-    this.noticias = new newsI('hola', 'perro', 'dasd');
+    
   }
 
 
@@ -21,7 +21,7 @@ export class NewsFeedPage implements OnInit {
   title : any;
   description: any
 
-  vector : string[] = []
+  
 
 
  
@@ -42,32 +42,35 @@ export class NewsFeedPage implements OnInit {
  
 
   ngOnInit() {
-    this.prueba()
+    this.prueba();
     // this.noticias[0] = {
     //   title: "Titulo",
     //   description: "Description",
     //   imageURL: "imageURL"
     // };
-
+    setTimeout(()=>{   
+      this.ciclo();
+ }, 750);
   }
 
   prueba() {
-    const url = 'https://www.reforma.com/rss/portada.xml';
+    const url = 'https://www.reforma.com/rss/ciencia.xml';
     const textarea = document.getElementById('rickys-blog-textarea');
     feednami.load(url)
       .then(feed => {
         this.newsApi = feed;
-        // console.log(this.news.entries[1]);
+    //     // console.log(this.news.entries[1]);
         // this.imageUrl = this.news.entries[1]['rss:enclosure']['#'];
         // this.title = this.news.entries[1].title;
         // this.description = this.news.entries[1].description;
         // console.log(this.news)
       });
+      
   }
 
   ciclo() {
     this.news = []
-    
+    console.log(this.newsApi)
     // console.log(this.newsApi)
     for (let i = 0; i < this.newsApi.entries.length ; i++)
     {
@@ -78,12 +81,12 @@ export class NewsFeedPage implements OnInit {
       // this.newsTitle.push(titulo)
       // this.newsDescription.push(description)
       // this.newsimageURL.push(imageURL)
-      this.noticias[i] = {
+      this.testArray.push({
         title: titulo,
         description: description,
         imageURL: imageURL
-      };
-      console.log(this.noticias[9]);
+      });
+      console.log(this.testArray);
       // this.newsDescription.push(description)
       // this.newsimageURL.push(imageURL)
       

@@ -15,19 +15,21 @@
     <ion-item>
         <ion-card> {{new.description}} </ion-card>
     </ion-item> -->
-    {{noticias[0].title}}
-    <ion-card > 
-        <!-- <ion-img src={{new.imageUrl}}></ion-img>  -->
+    <!-- {{noticias[1].description}}
+    <ion-img src="{{noticias[1].imageURL}}"></ion-img>  -->
+    <ion-card *ngFor="let noticia of testArray" > 
+        <ion-img src={{noticia.imageURL}}></ion-img> 
         <ion-card-header>
           
-          <ion-card-title> {{noticia}} </ion-card-title>
+          <ion-card-title> {{noticia.title}} </ion-card-title>
         </ion-card-header>
       
-        <!-- <ion-card-content>
-            {{new.description}}
-        </ion-card-content> -->
+        <ion-card-content>
+            {{noticia.description}}
+        </ion-card-content>
+        
       </ion-card>
-      <ion-button (click)="ciclo()" > hola </ion-button>
+      <!-- <ion-button (click)="ciclo()" > hola </ion-button> -->
 
   </ion-list>
 
