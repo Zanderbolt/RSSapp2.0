@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/user.service'
 
 import { AlertController } from '@ionic/angular';
+import { NavController, LoadingController } from '@ionic/angular'
 
 
 @Component({
@@ -13,7 +14,8 @@ import { AlertController } from '@ionic/angular';
 
 export class TabsPage implements OnInit {
   constructor(private userService: UsersService,
-              public alertController: AlertController
+              public alertController: AlertController,
+              private nav: NavController,
   ) { }
   
 
@@ -24,6 +26,11 @@ export class TabsPage implements OnInit {
   logOut() {
     this.succesfullAlert();
     this.userService.loggedIn = false;
+    this.nav.navigateForward('/')
+  }
+
+  test() {
+    console.log(this.userService.selectedUser.tags);
   }
 
   async succesfullAlert() {

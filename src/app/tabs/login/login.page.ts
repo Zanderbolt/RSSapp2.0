@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   addUser: boolean = false;
   users: userI[];
   user: userI = {
-    name: "zidanecla2",
+    name: "",
     password: "",
     tags: []
   }
@@ -36,31 +36,46 @@ export class LoginPage implements OnInit {
     this.userId = this.route.snapshot.params['id'];
   }
 
-  async login() {
-    this.userService.getUser(this.user.name).subscribe(res => { this.userService.selectedUser = res }) 
-    if (this.userService.selectedUser != null) 
-    {
-      await this.successfullAlert();
-      this.nav.navigateForward('/')
-      this.userService.loggedIn = true;
-    }
-    else
-      await this.unsuccesfullAlert();
+  login() {
+    // console.log(this.user.name);
+    this.userService.getUser(this.user.name).subscribe(res => { this.userService.selectedUser = res })
+    console.log("Name on Bx ", this.user.name)
+    console.log("Selected User ", this.userService.selectedUser)
+    // if (this.userService.selectedUser != null) {
+    //   this.successfullAlert();
+    //   this.nav.navigateForward('/')
+    //   this.userService.loggedIn = true;
+    //   console.log(this.userService.selectedUser.name)
+    // }
+    // else
+    //   this.unsuccesfullAlert();
+
+    setTimeout(() => {      
+      if (this.userService.selectedUser != null) {
+        this.successfullAlert();
+        this.nav.navigateForward('/')
+        this.userService.loggedIn = true;
+      }
+      else
+        this.unsuccesfullAlert();
+    }, 1500);
+
   }
 
   async saveUser() {
+    this.user.tags = ["general"]
 
-    // if there is an user add
+    // if there is an user, add
     if (this.addUser) {
       const loading = await this.loadingController.create({
         message: 'Creating user...'
       });
       await loading.present();
 
-      this.userService.addUser(this.user.name,this.user)
-        loading.dismiss()
-        this.nav.navigateForward('/')
-      
+      this.userService.addUser(this.user.name, this.user)
+      loading.dismiss()
+      this.nav.navigateForward('/')
+
       this.user.name = ""
       this.user.password = ""
     }
@@ -75,7 +90,7 @@ export class LoginPage implements OnInit {
 
   async successfullAlert() {
     const alert = await this.alertController.create({
-      header: 'Success!',      
+      header: 'Success!',
       message: 'Login succesful',
       buttons: ['OK']
     });
@@ -85,7 +100,7 @@ export class LoginPage implements OnInit {
 
   async unsuccesfullAlert() {
     const alert = await this.alertController.create({
-      header: 'Incorrect',      
+      header: 'Incorrect',
       message: 'Credentials are not correct :c',
       buttons: ['OK']
     });

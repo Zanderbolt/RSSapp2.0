@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 import { userI } from '../../models/user.interface'
 import { UsersService } from '../../services/user.service'
@@ -12,6 +12,7 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './my-tags.page.html',
   styleUrls: ['./my-tags.page.scss'],
 })
+
 export class MyTagsPage implements OnInit {
 
   constructor(
@@ -26,11 +27,17 @@ export class MyTagsPage implements OnInit {
   users: userI[];
   user: userI = this.userService.selectedUser;
 
-  newTags: string[];
+  newTags: string[] = [];
+
+  // ngOnChanges() {
+  //   this.userService.getUser(this.userService.selectedUser.name).subscribe(res => { this.user = res })
+  //   console.log(this.user.tags)
+  // }
 
   ngOnInit() {
-     this.userService.getUser(this.userService.selectedUser.name).subscribe(res => { this.user = res })
-    console.log(this.user.tags)
+      // this.userService.getUser(this.userService.selectedUser.name).subscribe(res => { this.user = res })
+      // console.log(this.user.tags)
+     
   }
 
   addTags(value) {

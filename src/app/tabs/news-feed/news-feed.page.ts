@@ -68,9 +68,8 @@ export class NewsFeedPage implements OnInit {
       
   }
 
-  ciclo() {
-    this.news = []
-    console.log(this.newsApi)
+  ciclo() {    
+    // console.log(this.newsApi)
     // console.log(this.newsApi)
     for (let i = 0; i < this.newsApi.entries.length ; i++)
     {
@@ -86,7 +85,7 @@ export class NewsFeedPage implements OnInit {
         description: description,
         imageURL: imageURL
       });
-      console.log(this.testArray);
+      // console.log(this.testArray);
       // this.newsDescription.push(description)
       // this.newsimageURL.push(imageURL)
       
