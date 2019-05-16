@@ -16,6 +16,12 @@ export class UsersService {
   public selectedUser : userI;
   public loggedIn : boolean = false;
 
+  
+  mostrarCiencia: boolean = false;
+  mostrarCultura: boolean = false;
+  mostrarModa: boolean = false;
+  mostrarNegocios: boolean = false;
+
   constructor(db: AngularFirestore) { 
     this.usersCollection = db.collection<userI>('users') //Collección o tabla
     this.users = this.usersCollection.snapshotChanges().pipe(map (
@@ -29,12 +35,32 @@ export class UsersService {
     ))
   }
 
+  checkTags() {
+    this.mostrarCiencia = false;
+      this.mostrarCultura = false;
+      this.mostrarModa = false;
+      this.mostrarNegocios = false;
+      
+      for (let i = 0; i< this.selectedUser.tags.length; i++ )
+      {
+        if (this.selectedUser.tags[i] == "Ciencia")
+          this.mostrarCiencia = true;
+        else if (this.selectedUser.tags[i] == "Cultura")
+        this.mostrarCultura = true
+        else if(this.selectedUser.tags[i] == "Moda")
+        this.mostrarModa = true
+        else if (this.selectedUser.tags[i] == "Negocios")
+        this.mostrarNegocios = true
+       
+      } 
+  }
+
   getUsers() {
     return this.users;
   }
 
-  getUser(username: string) {
-    return this.usersCollection.doc<userI>(username).valueChanges();
+  getUser(username: string) {    
+    return this.usersCollection.doc<userI>(username).valueChanges();    
   }
 
   addUser(username: string, user: userI) {

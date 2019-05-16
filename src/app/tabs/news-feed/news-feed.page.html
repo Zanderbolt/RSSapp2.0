@@ -6,34 +6,65 @@
 
 <ion-content>
   <ion-list>
-    <!-- <ion-item>
-        <ion-img src={{new.imageUrl}}></ion-img>       
-    </ion-item>
-    <ion-item lines="none">
-        <ion-label> {{new.title}} </ion-label>
-    </ion-item>
-    <ion-item>
-        <ion-card> {{new.description}} </ion-card>
-    </ion-item> -->
-    <!-- {{noticias[1].description}}
-    <ion-img src="{{noticias[1].imageURL}}"></ion-img>  -->
-    <ion-card *ngFor="let noticia of testArray" > 
-        <ion-img src={{noticia.imageURL}}></ion-img> 
+
+    <ion-card *ngIf=this.userService.mostrarNegocios>
+      <ion-card *ngFor="let noticia of testArrayNegocios">
+        <ion-img src={{noticia.imageURL}}></ion-img>
         <ion-card-header>
-          
           <ion-card-title> {{noticia.title}} </ion-card-title>
         </ion-card-header>
-      
+
         <ion-card-content>
-            {{noticia.description}}
+          {{noticia.description}}
         </ion-card-content>
-        
+
       </ion-card>
-      <!-- <ion-button (click)="ciclo()" > hola </ion-button> -->
+    </ion-card>
+
+    <ion-card *ngIf=this.userService.mostrarCiencia>
+      <ion-card *ngFor="let noticia of testArrayCiencia">
+        <ion-img src={{noticia.imageURL}}></ion-img>
+        <ion-card-header>
+          <ion-card-title> {{noticia.title}} </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{noticia.description}}
+        </ion-card-content>
+      </ion-card>
+    </ion-card>
+
+    <ion-card *ngIf=this.userService.mostrarCultura>  
+      <ion-card *ngFor="let noticia of testArrayCultura">
+        <ion-img src={{noticia.imageURL}}></ion-img>
+        <ion-card-header>
+          <ion-card-title> {{noticia.title}} </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{noticia.description}}
+        </ion-card-content>
+
+      </ion-card>
+    </ion-card>
+
+    <ion-card *ngIf=this.userService.mostrarModa>
+      <ion-card *ngFor="let noticia of testArrayModa">
+        <ion-img src={{noticia.imageURL}}></ion-img>
+        <ion-card-header>
+          <ion-card-title> {{noticia.title}} </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{noticia.description}}
+        </ion-card-content>
+
+      </ion-card>
+    </ion-card>
 
   </ion-list>
 
-  <script>
+  <!-- <script>
       const url = 'http://devblog.ricky.me/rss.xml'
       const textarea = document.getElementById('rickys-blog-textarea')
       feednami.load(url)
@@ -44,7 +75,7 @@
             textarea.value += `${entry.title}\n${entry.link}\n\n`
           }
         })
-    </script>
+    </script> -->
 
-    
+
 </ion-content>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { newsI } from '../../models/news.interface';
+import { UsersService } from '../../services/user.service'
 
 
 @Component({
@@ -8,38 +9,51 @@ import { newsI } from '../../models/news.interface';
   styleUrls: ['./news-feed.page.scss'],
 })
 export class NewsFeedPage implements OnInit {
-  
 
-  constructor() { 
-  //  this.news02 = new newsI[]
-    
+
+  constructor(private userService : UsersService) {
+    //  this.news02 = new newsI[]
+
   }
 
 
-  newsApi : any;
-  imageUrl : any;
-  title : any;
+  newsApiCiencia: any;
+  newsApiCultura: any;
+  newsApiModa: any;
+  newsApiNegocios: any;
+
+  imageUrl: any;
+  title: any;
   description: any
 
-  
+
+  mostrarCiencia: boolean = false;
+  mostrarCultura: boolean = false;
+  mostrarModa: boolean = false;
+  mostrarNegocios: boolean = false;
 
 
- 
-  
-  news : newsI[] = [];
-  newsTitle : string[] = []
-  testArray : newsI[] = []
-  newsDescription : string[] = []
-  newsimageURL : string[] = []
+
+
+  news: newsI[] = [];
+  newsTitle: string[] = []
+  testArrayCiencia: newsI[] = []
+  testArrayCultura: newsI[] = []
+  testArrayModa: newsI[] = []
+  testArrayNegocios: newsI[] = []
+
+  newsDescription: string[] = []
+
+  newsimageURL: string[] = []
   newBody: newsI = {
     title: "Titulo",
     description: "Description",
     imageURL: "imageURL"
   }
 
-  blank : newsI[] = [];
+  blank: newsI[] = [];
 
- 
+
 
   ngOnInit() {
     this.prueba();
@@ -48,74 +62,101 @@ export class NewsFeedPage implements OnInit {
     //   description: "Description",
     //   imageURL: "imageURL"
     // };
-    setTimeout(()=>{   
+    setTimeout(() => {
       this.ciclo();
- }, 750);
+    }, 750);
   }
 
   prueba() {
-    const url = 'https://www.reforma.com/rss/ciencia.xml';
-    const textarea = document.getElementById('rickys-blog-textarea');
+    let url = 'https://www.reforma.com/rss/ciencia.xml';
+    // const textarea = document.getElementById('rickys-blog-textarea');
     feednami.load(url)
       .then(feed => {
-        this.newsApi = feed;
-    //     // console.log(this.news.entries[1]);
+        this.newsApiCiencia = feed;
+        //     // console.log(this.news.entries[1]);
         // this.imageUrl = this.news.entries[1]['rss:enclosure']['#'];
         // this.title = this.news.entries[1].title;
         // this.description = this.news.entries[1].description;
         // console.log(this.news)
       });
-      
+
+    url = 'https://www.reforma.com/rss/cultura.xml';
+    feednami.load(url)
+      .then(feed => {
+        this.newsApiCultura = feed;
+      });
+
+    url = 'https://www.reforma.com/rss/moda.xml';
+    feednami.load(url)
+      .then(feed => {
+        this.newsApiModa = feed;
+      });
+
+    url = 'https://www.reforma.com/rss/negocios.xml';
+    feednami.load(url)
+      .then(feed => {
+        this.newsApiNegocios = feed;
+      });
+
   }
 
-  ciclo() {    
-    // console.log(this.newsApi)
-    // console.log(this.newsApi)
-    for (let i = 0; i < this.newsApi.entries.length ; i++)
-    {
-      // console.log(this.newsApi.entries[i])
-      let titulo = this.newsApi.entries[i].title;
-      let description = (this.newsApi.entries[i].description);
-      let imageURL = (this.newsApi.entries[i]['rss:enclosure']['#'])
-      // this.newsTitle.push(titulo)
-      // this.newsDescription.push(description)
-      // this.newsimageURL.push(imageURL)
-      this.testArray.push({
+  ciclo() {
+  
+
+      
+
+    // CIENCIA
+    for (let i = 0; i < this.newsApiCiencia.entries.length; i++) {
+      let titulo = this.newsApiCiencia.entries[i].title;
+      let description = (this.newsApiCiencia.entries[i].description);
+      let imageURL = (this.newsApiCiencia.entries[i]['rss:enclosure']['#'])
+      this.testArrayCiencia.push({
         title: titulo,
         description: description,
         imageURL: imageURL
       });
-      // console.log(this.testArray);
-      // this.newsDescription.push(description)
-      // this.newsimageURL.push(imageURL)
-      
-  
-
-      // console.log(this.testArray)    
-      // this.newBody.title = titulo
-      // this.news.push(this.newBody.title);
-      // this.newBody.title = "";
-      // this.news.push(this.newsApi.entries[i].description);
-      // this.news.push(this.newsApi.entries[i]['rss:enclosure']['#'])
-
-      //  this.newBody.title = this.newsApi.entries[i].title
-      //  this.newBody.description = this.newsApi.entries[i].description
-      //  this.newBody.imageURL = this.news.entries[1]['rss:enclosure']['#']
-      //  let objeto : {
-      //    title: "hola",
-      //    description: "descripcion",
-      //    imageURL: "imageURL"
-      //  }
-      //  this.news.push(objeto);
-      //  console.log(this.news);
-       
-     
-      
     }
 
-  
-   
+    // CULTURA
+    for (let i = 0; i < this.newsApiCultura.entries.length; i++) {
+      let titulo = this.newsApiCultura.entries[i].title;
+      let description = (this.newsApiCultura.entries[i].description);
+      let imageURL = (this.newsApiCultura.entries[i]['rss:enclosure']['#'])
+      this.testArrayCultura.push({
+        title: titulo,
+        description: description,
+        imageURL: imageURL
+      });
+    }
+
+    // MODA
+    for (let i = 0; i < this.newsApiModa.entries.length; i++) {
+      let titulo = this.newsApiModa.entries[i].title;
+      let description = (this.newsApiModa.entries[i].description);
+      let imageURL = (this.newsApiModa.entries[i]['rss:enclosure']['#'])
+      this.testArrayModa.push({
+        title: titulo,
+        description: description,
+        imageURL: imageURL
+      });
+    }
+
+    // NEGOCIOS
+    for (let i = 0; i < this.newsApiNegocios.entries.length; i++) {
+      let titulo = this.newsApiNegocios.entries[i].title;
+      let description = (this.newsApiNegocios.entries[i].description);
+      let imageURL = (this.newsApiNegocios.entries[i]['rss:enclosure']['#'])
+      this.testArrayNegocios.push({
+        title: titulo,
+        description: description,
+        imageURL: imageURL
+      });
+    }
+
+
+
 
   }
 
 }
+

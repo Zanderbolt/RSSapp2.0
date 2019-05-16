@@ -27,10 +27,18 @@ export class TabsPage implements OnInit {
     this.succesfullAlert();
     this.userService.loggedIn = false;
     this.nav.navigateForward('/')
+    this.userService.mostrarCiencia = true
+    this.userService.mostrarCultura = true
+    this.userService.mostrarModa = true
+    this.userService.mostrarNegocios = true
   }
 
   test() {
     console.log(this.userService.selectedUser.tags);
+    console.log(this.userService.mostrarCiencia);
+    console.log(this.userService.mostrarCultura);
+    console.log(this.userService.mostrarModa);
+    console.log(this.userService.mostrarNegocios);
   }
 
   async succesfullAlert() {

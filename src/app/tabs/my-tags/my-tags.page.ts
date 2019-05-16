@@ -29,34 +29,39 @@ export class MyTagsPage implements OnInit {
 
   newTags: string[] = [];
 
-  // ngOnChanges() {
-  //   this.userService.getUser(this.userService.selectedUser.name).subscribe(res => { this.user = res })
-  //   console.log(this.user.tags)
-  // }
 
   ngOnInit() {
-      // this.userService.getUser(this.userService.selectedUser.name).subscribe(res => { this.user = res })
-      // console.log(this.user.tags)
+     
      
   }
 
   addTags(value) {
-    console.log(this.user.tags)
-    this.newTags = value
+      
+    this.newTags = value    
     for (let i = 0; i < this.newTags.length ; i++)
     {
-      this.user.tags.push(this.newTags[i]);
-    }    
+      if (!this.userService.selectedUser.tags.includes(this.newTags[i]))
+        this.userService.selectedUser.tags.push(this.newTags[i]);
+    }
+  
     this.updateTags();
+
+    setTimeout(() => { 
+      this.userService.checkTags();
+    }, 750);
+
   }
 
   updateTags() {
-    this.userService.updateUser(this.user, this.user.name);
+    this.userService.updateUser(this.userService.selectedUser, this.userService.selectedUser.name);
   }
 
   deleteTag(tag: number) {
-    this.user.tags.splice(tag,1);
+    this.userService.selectedUser.tags.splice(tag,1);
     this.updateTags();
+    setTimeout(() => { 
+      this.userService.checkTags();
+    }, 750);
   }
 
 }

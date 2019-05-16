@@ -1,7 +1,7 @@
 <ion-tabs>
 
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="news-feed" (click)="test()">
+    <ion-tab-button tab="news-feed" (click)="test()" style="color:blue">
       <ion-icon name="paper"></ion-icon>
       <ion-label>News Feed</ion-label>
     </ion-tab-button>
@@ -11,15 +11,17 @@
       <ion-label>Log In</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button (click)="logOut()" *ngIf="this.userService.loggedIn">
+    <ion-tab-button tab="myTags" *ngIf="this.userService.loggedIn" style="color:green">
+      <ion-icon name="bookmark"></ion-icon>
+      <ion-label>My Tags</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="logOut()" *ngIf="this.userService.loggedIn"  style="color:red">
       <ion-icon name="remove-circle"></ion-icon>
       <ion-label>Log Out</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="myTags" *ngIf="this.userService.loggedIn">
-        <ion-icon name="bookmark"></ion-icon>
-        <ion-label>My Tags</ion-label>
-      </ion-tab-button>
+
 
     <!-- <ion-tab-button tab="tab3">
       <ion-icon name="send"></ion-icon>
